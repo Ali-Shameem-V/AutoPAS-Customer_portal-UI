@@ -1,0 +1,100 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand">Policy Details</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" (click)="logout()" routerLink="login">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-dark text-white text-center">
+                    <h2>Add Policy & Chassis Numbers</h2>
+                </div>
+                <div class="card-body">                    
+                    <form (ngSubmit)="policyNumberValidation()" #policyChassisForm="ngForm">
+                        <div class="form-group">
+                            <label for="policyNumber">Policy Number</label>
+                            <input type="number" class="form-control" id="policyNumber" placeholder="Enter PolicyNumber" name="policyNumber" minlength="9"
+                            maxlength="9" #policyNumber="ngModel" [(ngModel)]="policies.policyNumber" required>
+                            <div>
+                                <small *ngIf="policyNumber.invalid && policyNumber.touched" >Policy Number is a required Field</small>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="chasisNumber">Chassis Number</label>
+                            <input type="text" class="form-control" id="chasisNumber" name="chasisNumber"
+                            placeholder="Enter ChassisNumber" #chassisNumber="ngModel" [(ngModel)]="policies.chasisNumber" required>
+                            <div>
+                                <small *ngIf="chassisNumber.invalid && chassisNumber.touched" >Chassis Number is a required Field</small>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg" [disabled]="!policyChassisForm.valid">Submit</button>
+                        </div>
+                        <div class="form-group" *ngIf="policynum.length > 0">
+                            <label for="selectPolicyNumbers">Select Policy Number</label>
+                            <select class="form-control"  id="policyNumber" name="selectedPolicyNumber" [(ngModel)]="selectedPolicyNumber"  (change)="PolicyDetails()" (ngModelChange)="PolicyDetails()">
+                                <ng-container >
+                                <option disabled selected>Select Policy Number</option>
+                                <option *ngFor="let item of policynum">{{item}}</option>  
+                                </ng-container>   
+                            </select>
+
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+            
+            
+</div>
+    <table *ngIf="selectedPolicyNumber" class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>Policy Number</th>
+                    <td>{{policyData.policyNumber}}</td>
+            </tr>
+            <tr>
+                <th>Policy Effective Date</th>
+                    <td>{{policyData.policyEffectiveDt}}</td>
+            </tr>
+            <tr>
+                <th>Policy Expiration Date</th>
+                    <td>{{policyData.policyExpirationDt}}</td>
+            </tr>
+            <tr>
+                <th>Term</th>
+                    <td>{{policyData.term}}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                    <td>{{policyData.status}}</td>
+            </tr>
+            <tr>
+                <th>Total Premium</th>
+                    <td>{{policyData.totalPremium}}</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-center">
+                    <button class="btn btn-danger" (click)="removePolicy()"><span class="bi bi-trash"></span> Delete</button>&nbsp;&nbsp;
+                    <button class="btn btn-primary" (click)="selectedPolicyNumber=null"><span class="bi bi-trash"></span> Cancel</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>  
+    </div>
+     
+    
