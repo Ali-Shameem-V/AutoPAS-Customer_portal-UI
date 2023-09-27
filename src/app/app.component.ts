@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './service/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,16 +8,9 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit{
   title = 'policyDetails.UI';
-  constructor(private authService:AuthService,private router:Router){
-  }
+  constructor(private router:Router){}
   ngOnInit(): void {
   }
-  login(){
-    this.authService.login();
-
-  }
-  logout(){
-    this.authService.logout();
-  }
+  
 }
 

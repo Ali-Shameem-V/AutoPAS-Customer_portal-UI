@@ -1,5 +1,5 @@
 export interface PortalUser{
 id: any ;
-UserName: string;
-Password: string;
+userName: string;
+password: string;
 }

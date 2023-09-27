@@ -1,4 +1,4 @@
 export interface Policy{
-    policyNumber: any;
+    policyNumber:any;
     chasisNumber:string;
     }
