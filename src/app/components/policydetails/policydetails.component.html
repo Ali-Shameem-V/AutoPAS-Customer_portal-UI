@@ -48,11 +48,11 @@
             
             
 </div>
-    <table *ngIf="selectedPolicyNumber" class="table table-bordered">
+    <table *ngIf="selectedPolicyNumber && policyData" class="table table-bordered">
         <tbody>
             <tr>
                 <th>Policy Number</th>
-                    <td>{{policyData?.policyNumber}}</td>
+                    <td >{{policyData?.policyNumber}}</td>
             </tr>
             <tr>
                 <th>Policy Effective Date</th>
